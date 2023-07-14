@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import RQProvider from '@showwcase/lib/react-query/provider';
 import StyledComponentsRegistry from '@showwcase/lib/styled-components/registry';
 import ThemeProvider from '@showwcase/lib/styled-components/themeProvider';
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className} style={{ background: '#171717', color: '#fafafa' }}>
         <StyledComponentsRegistry>
-          <ThemeProvider>{children}</ThemeProvider>
+          <RQProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </RQProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
