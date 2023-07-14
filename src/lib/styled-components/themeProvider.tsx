@@ -7,8 +7,8 @@ import { Reset } from 'styled-reset';
 export const theme = {
   colors: {
     darkNeutral: '#8f90a6',
-    darkPrimary: '#1d1d1f',
-    darkSecondary: '#606170',
+    darkPrimary: '#0a0a0a',
+    darkSecondary: '#262626',
     darkStain: '#555770',
     lightNeutral: '#fafafc',
     lightPrimary: '#ffffff',

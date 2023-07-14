@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import Box from '@showwcase/components/basic/Box';
 import RQProvider from '@showwcase/lib/react-query/provider';
 import StyledComponentsRegistry from '@showwcase/lib/styled-components/registry';
 import ThemeProvider from '@showwcase/lib/styled-components/themeProvider';
@@ -15,10 +16,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ background: '#171717', color: '#fafafa' }}>
+      <body className={inter.className} style={{ background: '#0a0a0a', color: '#fafafa' }}>
         <StyledComponentsRegistry>
           <RQProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            <ThemeProvider>
+              <Box px={4} mx="auto" maxWidth={1024}>
+                {children}
+              </Box>
+            </ThemeProvider>
           </RQProvider>
         </StyledComponentsRegistry>
       </body>
