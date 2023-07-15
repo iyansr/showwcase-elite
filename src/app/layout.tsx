@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Box px={4} mx="auto" maxWidth={1024}>
                 {children}
               </Box>
+              <div id="modal-portal" />
             </ThemeProvider>
           </RQProvider>
         </StyledComponentsRegistry>

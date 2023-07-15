@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import Box from '@showwcase/components/basic/Box';
 import Button from '@showwcase/components/basic/Button';
+import Input from '@showwcase/components/basic/Input';
 import Text from '@showwcase/components/basic/Text';
 
 import useMutateSaveName from '../hooks/useMutateSaveName';
@@ -59,18 +60,5 @@ const HomePage = () => {
     </Box>
   );
 };
-
-const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.colors.darkSecondary};
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 18px;
-  color: ${({ theme }) => theme.colors.lightPrimary};
-  background-color: ${({ theme }) => theme.colors.darkPrimary};
-  outline: none;
-  max-width: 500px;
-  width: 100%;
-  transition: all 0.2s ease-in-out;
-`;
 
 export default HomePage;
