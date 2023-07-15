@@ -1,10 +1,10 @@
 export type University = {
-  webPages: string[];
+  web_pages: string[];
   domains: string[];
   country: string;
   name: string;
-  stateProvince: null;
-  alphaTwoCode: string;
+  ['state-province']: null;
+  alpha_two_code: string;
 };
 
 export type Education = {

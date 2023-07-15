@@ -6,9 +6,9 @@ const useQueryGetUserEducation = () => {
   return useQuery<unknown, unknown, Education[]>({
     queryKey: ['user_education'],
     queryFn: () => {
-      const educationList = JSON.parse(localStorage.getItem('education') || '[]');
+      const educationList: Education[] = JSON.parse(localStorage.getItem('education') || '[]');
 
-      return educationList;
+      return educationList.sort((a, b) => b.added - a.added);
     },
   });
 };
