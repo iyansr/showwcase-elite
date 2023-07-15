@@ -6,6 +6,8 @@ import RQProvider from '@showwcase/lib/react-query/provider';
 import StyledComponentsRegistry from '@showwcase/lib/styled-components/registry';
 import ThemeProvider from '@showwcase/lib/styled-components/themeProvider';
 
+import './styles.css';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
