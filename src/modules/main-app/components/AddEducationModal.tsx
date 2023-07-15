@@ -6,37 +6,29 @@ import Input, { TextArea } from '@showwcase/components/basic/Input';
 import Text from '@showwcase/components/basic/Text';
 import Modal, { type ModalProps } from '@showwcase/components/ui/Modal';
 import useDebounce from '@showwcase/modules/shared/hooks/useDebounce';
-import { type University } from '@showwcase/modules/shared/types';
+import { type Education, type University } from '@showwcase/modules/shared/types';
 
+import useMutateSaveEducation from '../hooks/useMutateSaveEducation';
 import useQuerySearchUniversity from '../hooks/useQuerySearchUniversity';
 
-type Props = {
-  onSave?: () => void;
-} & ModalProps;
-
-type Form = {
-  university: University | null;
-  startDate: string | Date;
-  endDate: string | Date;
-  description: string;
-  isPresent: boolean;
-};
-
-const AddEducationModal = ({ isOpen, onRequestClose, onSave }: Props) => {
+const AddEducationModal = ({ isOpen, onRequestClose }: ModalProps) => {
   const [searchValue, setSearchvalue] = useState('');
   const [showSearch, setShowSearch] = useState(false);
 
-  const [formValue, setFormValue] = useState<Form>({
+  const [formValue, setFormValue] = useState<Education>({
     university: null,
     startDate: '',
     endDate: '',
     description: '',
     isPresent: false,
+    fieldOfStudy: '',
+    added: Date.now(),
   });
 
   const debounceValue = useDebounce(searchValue, 500);
 
   const { data: universities } = useQuerySearchUniversity(debounceValue);
+  const { mutate } = useMutateSaveEducation();
 
   const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchvalue(e.target.value);
@@ -55,7 +47,8 @@ const AddEducationModal = ({ isOpen, onRequestClose, onSave }: Props) => {
   };
 
   const handleSave = () => {
-    console.log(formValue);
+    mutate({ education: { ...formValue, added: Date.now() } });
+    onRequestClose?.();
   };
 
   return (
@@ -103,6 +96,20 @@ const AddEducationModal = ({ isOpen, onRequestClose, onSave }: Props) => {
               ))}
             </Box>
           )}
+        </Box>
+
+        <Box display="flex" flexDirection="column" mt={4} width="100%">
+          <Text fontWeight={600} fontSize={14} mb={2}>
+            Field Of Study
+          </Text>
+          <Input
+            placeholder="Computer Science"
+            type="text"
+            name="fieldOfStudy"
+            value={formValue.fieldOfStudy as string}
+            onChange={handleChangeForm}
+            style={{ width: '100%', maxWidth: '660px' }}
+          />
         </Box>
 
         <Box display="flex" flexDirection="row" mt={4} width="100%" maxWidth="660px">
